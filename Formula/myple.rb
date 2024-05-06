@@ -2,7 +2,7 @@ class Myple < Formula
   desc "Work seamlessly with Myple from the command-line"
   homepage "https://myple.io"
   version "0.20.0"
-  license "MIT"
+  license "Apache-2.0"
 
   livecheck do
     url :stable
