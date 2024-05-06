@@ -14,7 +14,7 @@ brew install myple
 If you want to install a specific release, you can include the version in the command. You can also view the list of releases [here].
 
 ```bash
-brew install myple@0.20.0
+brew install myple@0.1.0
 ```
 
 ## Upgrade

@@ -1,4 +1,4 @@
-class Myple < Formula
+class MypleAT010 < Formula
   desc "Work seamlessly with Myple from the command-line"
   homepage "https://myple.io"
   version "0.1.0"
