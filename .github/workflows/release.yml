@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  repository_dispatch:
+    types: [release]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ruby
+
+      - name: Bump Myple Formula
+        run: ruby scripts/release.rb "${{ github.event.client_payload.version }}"
+
+      - name: Import GPG key
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+
+      - name: Commit Tap
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_options: --gpg-sign=${{ steps.gpg.outputs.keyid }}
+          commit_message: Release ${{ github.event.client_payload.version }}
+          commit_user_name: myplebot
+          commit_user_email: bot@myple.io
+          commit_author: myplebot <bot@myple.io>
