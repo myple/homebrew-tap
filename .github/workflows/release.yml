@@ -29,7 +29,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
 
       - name: Commit Tap
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_options: --gpg-sign=${{ steps.gpg.outputs.keyid }}
           commit_message: Release ${{ github.event.client_payload.version }}
